@@ -43,6 +43,15 @@ function formatCurrency(value) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
 function parseExpenseText(text) {
   const match = text.toLowerCase().match(/gastei\s+(\d+[\.,]?\d*)\s*(.*)/);
   if (!match) return null;
@@ -142,7 +151,7 @@ function renderMonthlyReport() {
 
   const lines = Object.entries(byCategory)
     .sort((a, b) => b[1] - a[1])
-    .map(([category, amount]) => `• ${category}: ${formatCurrency(amount)}`);
+    .map(([category, amount]) => `• ${escapeHtml(category)}: ${formatCurrency(amount)}`);
 
   const total = user.expenses.reduce((sum, item) => sum + item.amount, 0);
   const saldo = user.income - total;
