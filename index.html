@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metalife • Plataforma Completa</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app" id="app">
+      <section class="screen active" id="introScreen">
+        <div class="panel hero-panel">
+          <p class="badge">Metalife Premium</p>
+          <h1>Sua vida em modo evolução.</h1>
+          <p>
+            Rotina + finanças + gamificação em uma plataforma completa e acessível com foco no
+            tema roxo dark.
+          </p>
+          <ul class="highlights">
+            <li>✅ Metas inteligentes com histórico</li>
+            <li>✅ Assinatura segura e recorrente</li>
+            <li>✅ Chatbot que registra seus gastos</li>
+          </ul>
+          <button class="btn btn-primary" data-action="start">Começar agora</button>
+        </div>
+      </section>
+
+      <section class="screen" id="authScreen">
+        <div class="panel auth-layout">
+          <div>
+            <h2>Entrar</h2>
+            <form id="loginForm" class="form-grid">
+              <input type="email" id="loginEmail" placeholder="E-mail" required />
+              <input type="password" id="loginPassword" placeholder="Senha" required />
+              <button class="btn btn-primary" type="submit">Fazer login</button>
+            </form>
+          </div>
+          <div>
+            <h2>Cadastrar</h2>
+            <form id="registerForm" class="form-grid">
+              <input type="text" id="regName" placeholder="Nome completo" required />
+              <input type="email" id="regEmail" placeholder="E-mail" required />
+              <input type="password" id="regPassword" placeholder="Senha (mín. 6)" required />
+              <input type="number" id="regIncome" placeholder="Renda mensal" min="0" required />
+              <button class="btn btn-secondary" type="submit">Criar conta</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="subscriptionScreen">
+        <div class="panel">
+          <h2>Ativar assinatura</h2>
+          <p>Para liberar o dashboard completo, confirme sua assinatura mensal.</p>
+          <div class="pricing">
+            <strong>Plano Pro: R$ 24,90/mês</strong>
+            <span>7 dias grátis no primeiro acesso</span>
+          </div>
+          <form id="subscriptionForm" class="form-grid two-cols">
+            <input id="cardName" placeholder="Nome no cartão" required />
+            <input id="cardNumber" placeholder="Número do cartão" maxlength="19" required />
+            <input id="cardExpiry" placeholder="MM/AA" maxlength="5" required />
+            <input id="cardCvv" placeholder="CVV" maxlength="4" required />
+            <button class="btn btn-primary" type="submit">Confirmar assinatura</button>
+          </form>
+          <p class="muted">A assinatura só é possível para contas registradas e logadas.</p>
+        </div>
+      </section>
+
+      <section class="screen" id="dashboardScreen">
+        <header class="dashboard-top panel">
+          <div>
+            <p class="badge" id="welcomeBadge">Bem-vindo</p>
+            <h2>Dashboard inteligente</h2>
+            <p class="muted" id="subscriptionStatus">Assinatura ativa</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-ghost" id="addGoalBtn">Nova meta</button>
+            <button class="btn btn-ghost" id="logoutBtn">Sair</button>
+          </div>
+        </header>
+
+        <div class="dashboard-grid">
+          <article class="panel">
+            <h3>Metas e progresso</h3>
+            <form id="goalForm" class="inline-form">
+              <input id="goalInput" placeholder="Ex: Economizar R$ 1.000" />
+              <button class="btn btn-secondary" type="submit">Adicionar</button>
+            </form>
+            <ul id="goalList" class="list"></ul>
+          </article>
+
+          <article class="panel">
+            <h3>Resumo financeiro mensal</h3>
+            <div class="kpi-grid">
+              <div><small>Renda</small><strong id="kpiIncome">R$ 0,00</strong></div>
+              <div><small>Gastos</small><strong id="kpiExpenses">R$ 0,00</strong></div>
+              <div><small>Saldo</small><strong id="kpiBalance">R$ 0,00</strong></div>
+              <div><small>Taxa de economia</small><strong id="kpiSavingRate">0%</strong></div>
+            </div>
+            <h4>Histórico de gastos</h4>
+            <ul id="expenseHistory" class="list compact"></ul>
+          </article>
+
+          <article class="panel chat-panel">
+            <h3>Chatbot Financeiro</h3>
+            <p class="muted">Exemplo: "gastei 85 mercado" ou "gastei 120.50 uber"</p>
+            <div id="chatLog" class="chat-log"></div>
+            <form id="chatForm" class="inline-form">
+              <input id="chatInput" placeholder="Digite sua mensagem" required />
+              <button class="btn btn-primary" type="submit">Enviar</button>
+            </form>
+          </article>
+
+          <article class="panel">
+            <h3>Relatório final do mês</h3>
+            <div id="monthlyReport" class="report"></div>
+          </article>
+        </div>
+      </section>
+
+      <p id="feedback" class="feedback"></p>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
